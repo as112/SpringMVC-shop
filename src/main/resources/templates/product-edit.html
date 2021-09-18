@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Изменение товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt-5 mb-5">
+    <h1>Редактировать товар</h1>
+    <form method="post">
+        <p>Выберите категорию</p>
+        <select name="categoryId" class="custom-select">
+            <option th:value="${product.category.getCategoryId()}"  th:text="${product.category.getCategoryName()}"></option>
+            <option th:each="c : ${category}" th:value="${c.categoryId}" th:text="${c.categoryName}"/>
+        </select><br><br>
+        <p>Название</p>
+        <input type="text" th:value="${product.description}" name="description" class="form-control"><br>
+        <p>Цена</p>
+        <input type="double" th:value="${product.price}" name="price" class="form-control"><br>
+        <p>Остаток в магазине</p>
+        <input type="int" th:value="${product.balance}" name="balance" class="form-control"><br>
+        <button type="submit" class="btn btn-success">Изменить</button>
+    </form>
+</div>
+
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>

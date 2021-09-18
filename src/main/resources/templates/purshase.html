@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Покупки</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Все покупки</h1>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Наименование</th>
+            <th scope="col">Количество</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Имя</th>
+            <th scope="col">Фамилия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${purshases}">
+            <td th:text="${i.purshaseId}"></td>
+            <td th:text="${i.product.getCategory().getCategoryName()}"></td>
+            <td th:text="${i.product.getDescription()}"></td>
+            <td th:text="${i.count}"></td>
+            <td th:text="${i.totalPrice}"></td>
+            <td th:text="${i.employee.getFirstname()}"></td>
+            <td th:text="${i.employee.getLastname()}"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

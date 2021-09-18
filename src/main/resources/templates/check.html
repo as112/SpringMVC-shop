@@ -1,0 +1,27 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Чек</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Чек</h1>
+    <div th:each="i : ${purshase}">
+        <p>Вы покупаете:</p>
+        <p th:text="${i.product.getDescription()}"></p>
+        <p>Количество:</p>
+        <p th:text="${i.count}"></p>
+        <p>К оплате:</p>
+        <p th:text="${i.totalPrice}"></p>
+        <p>Продавец:</p>
+        <p th:text="${i.employee.getFirstname()}"></p>
+        <p th:text="${i.employee.getLastname()}"></p>
+    </div>
+</div>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

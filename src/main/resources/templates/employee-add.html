@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление сотрудника</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Новый сотрудник</h1>
+    <form action="/employee/add" method="post" th:object="${employee}">
+        <input type="text" th:field="*{firstname}" placeholder="Имя" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Name Error</div><br>
+        <input type="text" th:field="*{lastname}" placeholder="Фамилия" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Name Error</div><br>
+        <input type="text" th:field="*{rank}" placeholder="Должность" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}">Name Error</div><br>
+        <input type="text" th:field="*{password}" placeholder="Придумайте пароль" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div><br>
+        <button type="submit" class="btn btn-success">Добавить сотрудника</button>
+    </form>
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>

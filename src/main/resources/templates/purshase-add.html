@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <title>Оформление</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h1>Оформление покупки</h1>
+    <div th:if="${step} == 1" class="alert alert-success">
+        <form action="/purshase/add" method="get">
+            <select name="categoryId" class="custom-select">
+                <option selected>Выберите категорию товара</option>
+                <option th:each="i : ${category}" th:value="${i.categoryId}" th:text="${i.categoryName}"/>
+            </select><br><br>
+            <input type="submit" value="Выбрать"><br>
+        </form>
+    </div>
+
+    <div th:if="${step} == 2" class="alert alert-success">
+        <form action="/purshase/add" method="post">
+            <select name="productId" class="custom-select">
+                <option selected>Выберите товар</option>
+                <option th:each="p : ${products}" th:value="${p.productId}" th:text="${p.description}"/>
+            </select><br><br>
+            <input type="text" name="count" placeholder="Количество" class="form-control"><br>
+            <input type="submit" value="Печатать счет"><br>
+        </form>
+    </div>
+    <div th:if="${step} == 3" class="alert alert-success">
+        <form action="/purshase/add" method="post">
+            <input type="hidden" th:value="${productId}" name="productId" class="form-control"><br>
+            <input type="hidden" th:value="${count}" name="count" class="form-control"><br>
+            <input type="submit" value="Печатать счет"><br>
+        </form>
+    </div>
+</div>
+<div th:insert="blocks/footer :: footer"></div>
+</body>
+</html>

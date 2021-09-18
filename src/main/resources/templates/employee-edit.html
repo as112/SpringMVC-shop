@@ -1,0 +1,40 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Редактирование сотрудника</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5 mb-5">
+    <h1>Редактирование сотрудника</h1>
+<!--    <div th:each="i : ${employee}">-->
+
+        <form method="post" th:object="${employee}">
+            <input type="text" th:field="*{firstname}" class="form-control">
+            <div style="color:red" th:if="${#fields.hasErrors('firstname')}" th:errors="*{firstname}">Name Error</div><br>
+            <input type="text" th:field="*{lastname}" class="form-control">
+            <div style="color:red" th:if="${#fields.hasErrors('lastname')}" th:errors="*{lastname}">Name Error</div><br>
+            <input type="text" th:field="*{rank}" class="form-control">
+            <div style="color:red" th:if="${#fields.hasErrors('rank')}" th:errors="*{rank}">Name Error</div><br>
+            <input type="text" th:field="*{password}" class="form-control">
+            <div style="color:red" th:if="${#fields.hasErrors('password')}" th:errors="*{password}">Name Error</div><br>
+            <button type="submit" class="btn btn-success">Изменить данные</button>
+        </form>
+
+<!--        <form method="post">-->
+<!--            <input type="text" th:value="${i.firstname}" name="firstname" placeholder="Имя" class="form-control"><br>-->
+<!--            <input type="text" th:value="${i.lastname}" name="lastname" placeholder="Фамилия" class="form-control"><br>-->
+<!--            <input type="text" th:value="${i.rank}" name="rank" placeholder="Должность" class="form-control"><br>-->
+<!--            <input type="text" th:value="${i.password}" name="password" placeholder="Придумайте пароль" class="form-control"><br>-->
+<!--            <button type="submit" class="btn btn-success">Изменить данные</button>-->
+<!--        </form>-->
+<!--    </div>-->
+</div>
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>

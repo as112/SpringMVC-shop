@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Товары</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+
+<div class="container mt-5">
+    <h1>Товары в магазине</h1><br>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">id</th>
+            <th scope="col">Название</th>
+            <th scope="col">Категория</th>
+            <th scope="col">Цена</th>
+            <th scope="col">Остаток</th>
+            <th scope="col">Дополнительно</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="i : ${products}">
+            <td th:text="${i.productId}"></td>
+            <td th:text="${i.description}"></td>
+            <td th:text="${i.category.getCategoryName()}"></td>
+            <td th:text="${i.price}"></td>
+            <td th:text="${i.balance}"></td>
+            <td>
+                <a th:href="'/product/' + ${i.productId} + '/edit'" class="btn btn-secondary">Редактировать</a>
+                <form th:action="'/product/' + ${i.productId} + '/remove'" method="post">
+                    <button class="btn btn-warning" type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/product/add" class="btn btn-success">Добавить новый товар</a><br>
+</div>
+<br>
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>

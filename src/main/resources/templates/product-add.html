@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Добавление товара</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<header th:insert="blocks/header :: header"></header>
+<div class="container mt-5 mb-5">
+    <h1>Новый товар</h1>
+    <form action="/product/add" method="post" th:object="${productFromForm}">
+        <select name="categoryId" class="custom-select" required>
+            <option value="-1">Выберите категорию товара</option>
+            <option th:each="i : ${category}" th:value="${i.categoryId}" th:text="${i.categoryName}"/>
+        </select><br>
+        <div style="color:red" th:if="${#fields.hasErrors('category')}" th:errors="*{category}">Name Error</div><br>
+        <input type="text" th:field="*{description}" placeholder="Название" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('description')}" th:errors="*{description}">Name Error</div><br>
+        <input type="text" th:field="*{price}" placeholder="Цена" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Name Error</div><br>
+        <input type="text" th:field="*{balance}" placeholder="Остаток" class="form-control">
+        <div style="color:red" th:if="${#fields.hasErrors('balance')}" th:errors="*{balance}">Name Error</div><br>
+        <button type="submit" class="btn btn-success">Добавить товар</button>
+    </form>
+</div>
+
+
+<div th:insert="blocks/footer :: footer"></div>
+
+</body>
+</html>
