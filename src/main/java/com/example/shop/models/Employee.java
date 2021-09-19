@@ -30,7 +30,7 @@ public class Employee {
     private String password;
 
     @OneToMany(mappedBy ="employee", cascade = CascadeType.ALL)
-    private List<Purshase> purshase = new ArrayList<>();
+    private List<Purchase> purchase = new ArrayList<>();
 
     public Long getEmployeeId() {
         return employeeId;
@@ -72,12 +72,12 @@ public class Employee {
         this.password = password;
     }
 
-    public List<Purshase> getPurshase() {
-        return purshase;
+    public List<Purchase> getPurshase() {
+        return purchase;
     }
 
-    public void setPurshase(List<Purshase> purshase) {
-        this.purshase = purshase;
+    public void setPurshase(List<Purchase> purchase) {
+        this.purchase = purchase;
     }
 
     public Employee() {

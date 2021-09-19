@@ -26,7 +26,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="i : ${purshase}">
+        <tr th:each="i : ${purchase}">
             <td th:text="${i.purshaseId}"></td>
             <td th:text="${i.product.getCategory().getCategoryName()}"></td>
             <td th:text="${i.product.getDescription()}"></td>

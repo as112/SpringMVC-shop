@@ -23,8 +23,8 @@
         </tr>
         </thead>
         <tbody>
-        <tr th:each="i : ${purshases}">
-            <td th:text="${i.purshaseId}"></td>
+        <tr th:each="i : ${purchases}">
+            <td th:text="${i.purchaseId}"></td>
             <td th:text="${i.product.getCategory().getCategoryName()}"></td>
             <td th:text="${i.product.getDescription()}"></td>
             <td th:text="${i.count}"></td>

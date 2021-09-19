@@ -1,6 +1,5 @@
 package com.example.shop.controllers;
 
-import com.example.shop.models.Employee;
 import com.example.shop.models.Product;
 import com.example.shop.repo.EmployeeRepository;
 import com.example.shop.repo.ProductRepository;
@@ -28,6 +27,6 @@ public class StockController {
         model.addAttribute("productId", product.getProductId());
         model.addAttribute("count", count);
         model.addAttribute("step", 3);
-        return "purshase-add";
+        return "purchase-add";
     }
 }

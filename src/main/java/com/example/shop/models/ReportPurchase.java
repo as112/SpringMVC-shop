@@ -6,11 +6,11 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "report_purshase")
-public class ReportPurshase {
+@Table(name = "report_purchase")
+public class ReportPurchase {
     @Id
-    @Column(name = "purshase_id")
-    private Long purshaseId;
+    @Column(name = "purchase_id")
+    private Long purchaseId;
 
     @Column(name = "category_name")
     private String categoryName;
@@ -27,12 +27,12 @@ public class ReportPurshase {
     @Column(name = "employee_lastname")
     private String employeeLastName;
 
-    public Long getPurshaseId() {
-        return purshaseId;
+    public Long getPurchaseId() {
+        return purchaseId;
     }
 
-    public void setPurshaseId(Long purshaseId) {
-        this.purshaseId = purshaseId;
+    public void setPurchaseId(Long purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
     public String getCategoryName() {
@@ -83,12 +83,12 @@ public class ReportPurshase {
         this.count = count;
     }
 
-    public ReportPurshase() {
+    public ReportPurchase() {
     }
 
-    public ReportPurshase(Long purshaseId, String categoryName, String description, int count,
+    public ReportPurchase(Long purchaseId, String categoryName, String description, int count,
                           double totalPrice, String employeeFirstName, String employeeLastName) {
-        this.purshaseId = purshaseId;
+        this.purchaseId = purchaseId;
         this.categoryName = categoryName;
         this.description = description;
         this.count = count;

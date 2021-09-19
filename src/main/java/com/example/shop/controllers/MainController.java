@@ -2,18 +2,14 @@ package com.example.shop.controllers;
 
 import com.example.shop.models.Category;
 import com.example.shop.models.Employee;
-import com.example.shop.models.Product;
 import com.example.shop.repo.CategoryRepository;
 import com.example.shop.repo.EmployeeRepository;
-import com.example.shop.repo.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-
-import java.util.Optional;
 
 @Controller
 public class MainController {
@@ -44,7 +40,7 @@ public class MainController {
             model.addAttribute("category", category);
             model.addAttribute("step", 1);
             setEmployeeNow(employee.getEmployeeId());
-            return "purshase-add";
+            return "purchase-add";
         }
     }
 

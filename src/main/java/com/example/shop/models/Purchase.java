@@ -3,13 +3,13 @@ package com.example.shop.models;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "purshase")
-public class Purshase {
+@Table(name = "purchase")
+public class Purchase {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="purshase_id")
-    private Long purshaseId;
+    @Column(name="purchase_id")
+    private Long purchaseId;
 
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name="product_id")
@@ -23,12 +23,12 @@ public class Purshase {
     @JoinColumn(name="employee_id")
     private Employee employee;
 
-    public Long getPurshaseId() {
-        return purshaseId;
+    public Long getPurchaseId() {
+        return purchaseId;
     }
 
-    public void setPurshaseId(Long purshaseId) {
-        this.purshaseId = purshaseId;
+    public void setPurchaseId(Long purchaseId) {
+        this.purchaseId = purchaseId;
     }
 
     public Product getProduct() {
@@ -63,10 +63,10 @@ public class Purshase {
         this.totalPrice = totalPrice;
     }
 
-    public Purshase() {
+    public Purchase() {
     }
 
-    public Purshase(Product product, int count, double totalPrice, Employee employee) {
+    public Purchase(Product product, int count, double totalPrice, Employee employee) {
         this.product = product;
         this.count = count;
         this.totalPrice = totalPrice;

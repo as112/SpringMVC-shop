@@ -2,11 +2,11 @@ package com.example.shop.controllers;
 
 import com.example.shop.models.Employee;
 import com.example.shop.models.Product;
-import com.example.shop.models.Purshase;
+import com.example.shop.models.Purchase;
 import com.example.shop.repo.CategoryRepository;
 import com.example.shop.repo.EmployeeRepository;
 import com.example.shop.repo.ProductRepository;
-import com.example.shop.repo.PurshaseRepository;
+import com.example.shop.repo.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,10 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 
 @Controller
-public class PurshaseController {
+public class PurchaseController {
 
     @Autowired
-    private PurshaseRepository purshaseRepository;
+    private PurchaseRepository purchaseRepository;
 
     @Autowired
     private ProductRepository productRepository;
@@ -30,15 +30,15 @@ public class PurshaseController {
     @Autowired
     private CategoryRepository categoryRepository;
 
-    @GetMapping("/purshase")
-    public String purshases(Model model) {
-        Iterable<Purshase> purshases = purshaseRepository.findAll();
-        model.addAttribute("purshases", purshases);
-        return "purshase";
+    @GetMapping("/purchase")
+    public String purchases(Model model) {
+        Iterable<Purchase> purchases = purchaseRepository.findAll();
+        model.addAttribute("purchases", purchases);
+        return "purchase";
     }
 
-    @GetMapping("/purshase/add")
-    public String addPurshase(@RequestParam(value = "categoryId", required = false) Long categoryId,
+    @GetMapping("/purchase/add")
+    public String addPurchase(@RequestParam(value = "categoryId", required = false) Long categoryId,
                               Model model) throws Exception {
         if(categoryId != null) {
             Iterable<Product> product = productRepository.findByCategoryId(categoryId);
@@ -48,30 +48,30 @@ public class PurshaseController {
         else {
             System.out.println("error");
         }
-        return "purshase-add";
+        return "purchase-add";
     }
 
-    @PostMapping("/purshase/add")
-    public String purshaseAdd(@RequestParam Long productId,
+    @PostMapping("/purchase/add")
+    public String purchaseAdd(@RequestParam Long productId,
                               @RequestParam int count, Model model) throws Exception {
         int balance;
         Employee employee = employeeRepository.findById(MainController.getEmployeeNow()).orElseThrow(() -> new Exception());
         Product product = productRepository.findById(productId).orElseThrow(() -> new Exception());
-        Purshase purshase = new Purshase(product, count, count*product.getPrice(), employee);
+        Purchase purchase = new Purchase(product, count, count*product.getPrice(), employee);
 
-        balance = product.getBalance() - purshase.getCount();
+        balance = product.getBalance() - purchase.getCount();
         if(balance >= 0) {
 
             product.setBalance(balance);
-            purshaseRepository.save(purshase);
-            model.addAttribute("purshase", purshase);
+            purchaseRepository.save(purchase);
+            model.addAttribute("purchase", purchase);
             return "check";
         }
         else {
-            purshase.setCount(product.getBalance());
-            purshase.setTotalPrice(product.getPrice()*product.getBalance());
+            purchase.setCount(product.getBalance());
+            purchase.setTotalPrice(product.getPrice()*product.getBalance());
             product.setBalance(0);
-            purshaseRepository.save(purshase);
+            purchaseRepository.save(purchase);
             model.addAttribute("product", product);
             model.addAttribute("balanceDeficit", balance * (-1));
             model.addAttribute("address_host_stock","http://localhost:8082/");

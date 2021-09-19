@@ -10,7 +10,7 @@
 
 <div class="container mt-5 mb-5">
     <h1>Чек</h1>
-    <div th:each="i : ${purshase}">
+    <div th:each="i : ${purchase}">
         <p>Вы покупаете:</p>
         <p th:text="${i.product.getDescription()}"></p>
         <p>Количество:</p>

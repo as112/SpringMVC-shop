@@ -1,9 +1,9 @@
 package com.example.shop.controllers;
 
 import com.example.shop.models.Employee;
-import com.example.shop.models.Purshase;
+import com.example.shop.models.Purchase;
 import com.example.shop.repo.EmployeeRepository;
-import com.example.shop.repo.PurshaseRepository;
+import com.example.shop.repo.PurchaseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -20,7 +20,7 @@ public class EmployeeController {
     private EmployeeRepository employeeRepository;
 
     @Autowired
-    private PurshaseRepository purshaseRepository;
+    private PurchaseRepository purchaseRepository;
 
     @GetMapping("/employee")
     public String employees(Model model) {
@@ -52,8 +52,8 @@ public class EmployeeController {
             return "redirect:/employee";
         }
         Employee employee = employeeRepository.findById(id).orElseThrow(() -> new Exception());
-        Iterable<Purshase> purshase = purshaseRepository.findByEmployeeId(employee.getEmployeeId());
-        for (Purshase i:purshase) {
+        Iterable<Purchase> purshase = purchaseRepository.findByEmployeeId(employee.getEmployeeId());
+        for (Purchase i:purshase) {
             sum = sum + i.getTotalPrice();
         }
         model.addAttribute("sum", sum);
